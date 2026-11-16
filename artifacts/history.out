@@ -1,0 +1,111 @@
+    1  ls -l /etc/passwd
+    2  date
+    3  ls -i
+    4  ls
+    5  ls -ldi directory
+    6  start /etc/passwd
+    7  stat /etc/passwd
+    8  ls -ldi directory
+    9  ls
+   10  cd
+   11  ls
+   12  cd ..
+   13  ls
+   14  ls -ldi directory
+   15  ls -ldi kat
+   16  clear
+   17  cd
+   18  exit
+   19  ls
+   20  ls -ld /home/user1
+   21  sudo ls -l /home/user1/cat-suid
+   22  su -user1
+   23  su - user1
+   24  stat /home/user1 > ~/stat.out
+   25  stat /home/user1/cat-suid >> ~/stat.out
+   26  sudo stat /home/user1/cat-suid >> ~/stat.out
+   27  sudo find / -type f -perm -4000 2>/dev/null | sort | tee ~/suid-files.out
+   28  wc -l ~/suid-files.out
+   29  head -n 15 ~/suid-files.out
+   30  ls -l /usr/bin/passwd
+   31  su - user1
+   32  whoami
+   33  id
+   34  clear
+   35  sudo groupadd students
+   36  sudo useradd -m -u 1234 -G stidents user1
+   37  sudo groupadd students
+   38  sudo useradd -m -u 1234 -G students user1
+   39  sudo passwd user1
+   40  sudo change -M 90 user1
+   41  sudo chage -M 90 user1
+   42  id user1
+   43  sudo chage -l user1
+   44  stat /home/user1
+   45  sudo find / -type f -prem -4000 2>/dev/null
+   46  sudo find / -type f -perm -4000 2>/dev/null | tee ~/suid-files.out
+   47  ls -l /usr/bin/passwd
+   48  ps -eo pid,ruid,euid,comm | awk 'NR==1 || ($2>=1000 && $2<60000 && $3==0)'
+   49  ps -eo pid,ruid,euid,comm | awk 'NR==1 || ($2>=1000 && $2<60000 && $3==0)' | tee ~/processes.out
+   50  ls -l "$(command -v fusermount3)"
+   51  sudo sh -c 'printf "MEPHI SUID TEST\n" > /var/tmp/mephi-root-only.txt'
+   52  sudo chmod 600 /var/tmp/mephi-root-only.txt
+   53  ls -l /var/tmp/mephi-root-only.txt
+   54  sudo cp /usr/bin/cat /home/user1/cat-suid
+   55  sudo chown root:root /home/user1/cat-suid
+   56  sudo chmod 4755 /home/user1/cat-suid
+   57  ls -l /home/user1/cat-suid
+   58  sudo sh -c 'echo "MEPHI CAPABILITIES TEST" > /var/tmp/mephi-chown-test.txt'
+   59  ls -l /var/tmp/mephi-chown-test.txt
+   60  sudo cp /usr/bin/chown /home/user1/chown-cap
+   61  sudo chown root:root /home/user1/chown-cap
+   62  sudo chmos 755 /home/user1/chown-cap
+   63  sudo chmod 755 /home/user1/chown-cap
+   64  sudo setcap cap_chown=ep /home/user1/chown-cap
+   65  sudo getcap /home/user1/chown-cap
+   66  su - user1
+   67  clear
+   68  sudo crown root:root /var/tmp/mephi-crown-test.txt
+   69  sudo chown root:root /var/tmp/mephi-crown-test.txt
+   70  clear
+   71  sudo chown root:root /var/tmp/mephi-chown-test.txt
+   72  [REDACTED: accidentally entered value]
+   73  clear
+   74  sudo chown root:root /var/tmp/mephi-chown-test.txt
+   75  su - user1
+   76  sudo stat /home/user1/chown-cap >> ~/stat.out
+   77  sudo getcap /home/user1/chown-cap > ~/getcap.out
+   78  clear
+   79  sudo env EDITOR=nano visudo -f /etc/sudoers.d/mephi-time
+   80  sudo visudo -c
+   81  sudo chmod 0440 /etc/sudiers.d/mephi-time
+   82  sudo visudo -c
+   83  sudo chmod 0440 /etc/sudoers.d/mephi-time
+   84  sudo visudo -c
+   85  sudo -l -U user1
+   86  su - user1
+   87  clear
+   88  mkdir -p ~/mephi-submission/artifacts
+   89  cp ~/suid-files.out ~/processes.out ~/stat.out ~/getcap.out ~/mephi-submission/artifacts/
+   90  history > ~/mephi-submission/artifacts/history.out
+   91  {     id user1;     sudo chage -l user1; } > ~/mephi-submission/artifacts/user-setup.out
+   92  ls -lh ~/stat.out ~/getcap.out ~/suid-files.out ~/processes.out
+   93  history > ~/history.out
+   94  echo "31"
+   95  ls -lh ~/*.out
+   96  cat ~/getcap.out
+   97  cat ~/processes.out
+   98  grep 'File:' ~/stat.out
+   99  wc -l ~/suid-files.out
+  100  less ~/history.out
+  101  sudo reboot
+  102  loginctl list-sessions
+  103  systemd-inhibit --list
+  104  sudo systemctl reboot
+  105  sudo systemctl reboot -i
+  106  id user1
+  107  sudo chage -l user1
+  108  sudo ls -l /home/user1/cat-suid
+  109  sudo getcap /home/user1/chown-cap
+  110  sudo -l -U user1
+  111  history > ~/history.out
